@@ -1,0 +1,25 @@
+name: Test actions
+
+on: [push]
+
+jobs:
+    run-command:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Say hello
+              run: echo "Hello"
+            - name: list versions
+              run: |
+                  node -v
+                  npm -v
+            - name: clone repo into the vm
+              uses: actions/checkout@v3
+    
+    run-second-command:
+        runs-on: ubuntu-latest
+        needs: ["run-command"]
+        steps:
+            - name: Print path
+              run: pwd
+          
+        
